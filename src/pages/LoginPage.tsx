@@ -1,5 +1,8 @@
 import styled from 'styled-components';
 import mainBackground from "../images/user-template.png";
+import {useState} from "react";
+import {useForm} from "react-hook-form";
+import {AdminResponse} from "../type/types";
 
 const Wrapper = styled.div`
   font-family: 'Montserrat', sans-serif;
@@ -37,6 +40,11 @@ const StyledInput = styled.input`
   font-size: 14px;
 `;
 
+const ErrorMessage = styled.span`
+  padding: 0.75rem 0.5rem;
+  font-size: 14px;
+`;
+
 const StyledButton = styled.button`
   font-family: 'Montserrat', sans-serif;
   font-weight: bold;
@@ -49,24 +57,44 @@ const StyledButton = styled.button`
 `;
 
 const LoginPage = () => {
+    const {register, handleSubmit, formState: {errors}} = useForm();
+    const [loginSuccess, setLoginSuccess] = useState<any>(undefined);
 
-    const onButtonClick = () => {
-
+    const onSubmit = (data: any) => {
+        setLoginSuccess(undefined);
+        const requestOptions = {
+            method: "POST",
+            headers: {"Content-Type": "application/json"},
+            body: JSON.stringify({userName: data.username, password: data.password})
+        };
+        //TODO mkose get url from environment
+        fetch("http://localhost:8080/admin/login", requestOptions)
+            .then(response => response.json())
+            .then((data: AdminResponse) => {
+                setLoginSuccess(data.success);
+                data.success && localStorage.setItem("token", data.token);
+            });
     };
 
     return (
         <Wrapper>
-            <Main>
+            <Main onSubmit={handleSubmit(onSubmit)}>
                 <Row>
                     <Text>Kullanıcı Adı: </Text>
-                    <StyledInput/>
+                    <StyledInput {...register("username", {required: true})}/>
                 </Row>
                 <Row>
                     <Text>Şifre: </Text>
-                    <StyledInput/>
+                    <StyledInput {...register("password", {required: true})}/>
                 </Row>
                 <Row>
-                    <StyledButton onClick={() => onButtonClick()}>Giriş Yap</StyledButton>
+                    <StyledButton type="submit">Giriş Yap</StyledButton>
+                </Row>
+                <Row>
+                    {errors.username && errors.password &&
+                    <ErrorMessage>Tüm alanların doldurulması zorunludur</ErrorMessage>}
+                    {loginSuccess !== undefined && !loginSuccess &&
+                    <ErrorMessage>Kullanıcı adı veya şifre hatalıdır.</ErrorMessage>}
                 </Row>
             </Main>
         </Wrapper>
