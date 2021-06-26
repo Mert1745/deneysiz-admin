@@ -72,7 +72,10 @@ const LoginPage = () => {
             .then(response => response.json())
             .then((data: AdminResponse) => {
                 setLoginSuccess(data.success);
-                data.success && localStorage.setItem("token", data.token);
+                if (data.success) {
+                    localStorage.setItem("token", data.token);
+                    window.location.href = "/dashboard";
+                }
             });
     };
 
