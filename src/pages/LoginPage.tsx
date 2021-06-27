@@ -42,7 +42,10 @@ const StyledInput = styled.input`
 
 const ErrorMessage = styled.span`
   padding: 0.75rem 0.5rem;
-  font-size: 14px;
+  font-size: 17px;
+  margin-right: auto;
+  margin-left: auto;
+  text-decoration: underline;
 `;
 
 const StyledButton = styled.button`
