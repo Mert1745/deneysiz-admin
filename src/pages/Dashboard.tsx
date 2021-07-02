@@ -39,7 +39,7 @@ const Dashboard = () => {
         //TODO mkose get url from environment
         const requestOptions = {
             method: "GET",
-            headers: {"Content-Type": "application/json", "Authorization": token ?? ""},
+            headers: {"Content-Type": "application/json", "Authorization": "Bearer " + token ?? ""},
         };
         fetch("http://localhost:8080/admin/getAllBrands", requestOptions)
             .then(response => response.json())
