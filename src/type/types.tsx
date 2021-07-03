@@ -18,7 +18,7 @@ export interface Brand {
     parentCompanySafe: boolean;
     shopName: string[];
     certificate: Certificate[];
-    isSafe: boolean;
+    safe: boolean;
     vegan: boolean;
     hasVeganProduct: boolean;
 }

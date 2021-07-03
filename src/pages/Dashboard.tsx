@@ -3,24 +3,42 @@ import {useEffect, useState} from "react";
 import {Brand} from "../type/types";
 
 const Wrapper = styled.div`
-  width: 100vh;
-  margin-top: 5%;
+  padding-right: 25%;
+  padding-left: 15%;
+  padding-bottom: 5%;
   font-family: 'Montserrat', sans-serif;
   margin-left: auto;
   margin-right: auto;
 `;
 
+const ButtonWrapper = styled.div`
+`;
+
+const StyledButton = styled.button`
+  font-family: 'Montserrat', sans-serif;
+  font-weight: bold;
+  background: antiquewhite;
+  padding: 2% 5%;
+  margin-top: 2%;
+  margin-bottom: 2%;
+  margin-right: 2%;
+  cursor: pointer;
+  border-radius: 0.5rem;
+`;
+
 const StyledTable = styled.table`
   border: 1px;
+  margin-left: 0;
 `;
 
 const TableRow = styled.tr`
-  border: 1px solid black;
 `;
 
 const THCell = styled.th`
   border: 1px solid black;
-  padding: 0.5rem;
+  background: aliceblue;
+  padding: 0.5rem 2rem;
+  border-radius: 0.5rem;
 `;
 
 const THead = styled.thead`
@@ -28,7 +46,10 @@ const THead = styled.thead`
 
 const TBody = styled.td`
   border: 1px solid black;
-  padding: 0.5rem;
+  padding: 0.5rem 1.2rem;
+  background: cornsilk;
+  border-radius: 0.5rem;
+  font-weight: bold;
 `;
 
 const Dashboard = () => {
@@ -46,8 +67,16 @@ const Dashboard = () => {
             .then((data: Brand[]) => setBrands(data));
     }, []);
 
+    const onAddNewRowClick = () => {
+        window.location.href = "/brand/new";
+    };
+
     return (
         <Wrapper>
+            <ButtonWrapper>
+                <StyledButton type="button" onClick={() => onAddNewRowClick()}>Yeni Kayıt Ekle</StyledButton>
+                <StyledButton type="button">Var Olan Kaydı Sil</StyledButton>
+            </ButtonWrapper>
             <StyledTable>
                 <THead>
                     <TableRow>
@@ -71,14 +100,14 @@ const Dashboard = () => {
                             <TBody>{brand.id}</TBody>
                             <TBody>{brand.name}</TBody>
                             <TBody>{brand.parentCompany}</TBody>
-                            <TBody>{brand.offerInChina.valueOf()}</TBody>
+                            <TBody>{brand.offerInChina ? "Evet" : "Hayır"}</TBody>
                             <TBody>{brand.category}</TBody>
-                            <TBody>{brand.parentCompanySafe}</TBody>
+                            <TBody>{brand.parentCompanySafe ? "Evet" : "Hayır"}</TBody>
                             <TBody>{brand.shopName}</TBody>
                             <TBody>{brand.certificate}</TBody>
-                            <TBody>{brand.isSafe}</TBody>
-                            <TBody>{brand.vegan}</TBody>
-                            <TBody>{brand.hasVeganProduct}</TBody>
+                            <TBody>{brand.safe ? "Evet" : "Hayır"}</TBody>
+                            <TBody>{brand.vegan ? "Evet" : "Hayır"}</TBody>
+                            <TBody>{brand.hasVeganProduct ? "Evet" : "Hayır"}</TBody>
                         </TableRow>)
                 }
                 </tbody>

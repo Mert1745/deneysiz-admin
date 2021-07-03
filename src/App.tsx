@@ -6,6 +6,7 @@ import Header from "./components/Header";
 import background from "./images/background-pattern.jpg";
 import {BrowserRouter, Route, Switch} from "react-router-dom";
 import Dashboard from "./pages/Dashboard";
+import NewBrand from "./pages/NewBrand";
 
 const Wrapper = styled.div`
   min-height: 100vh;
@@ -20,6 +21,7 @@ function App() {
                 <Switch>
                     <Route path="/" component={LoginPage} exact/>
                     <Route path="/dashboard" component={Dashboard} exact/>
+                    <Route path="/brand/new" component={NewBrand} exact/>
                 </Switch>
             </Wrapper>
         </BrowserRouter>
