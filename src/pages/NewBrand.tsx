@@ -146,6 +146,7 @@ const NewBrand = () => {
             </Row>
             <Row>
                 <Text>Mağaza Adı: </Text>
+                {/*TODO mkose put regex*/}
                 <StyledInput {...register("shopName", {required: true})}/>
             </Row>
             <Row>
