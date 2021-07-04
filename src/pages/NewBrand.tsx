@@ -80,6 +80,7 @@ const NewBrand = () => {
             {"name": "xxxx", "value": data.xxxx}
         ];
         let concatenatedCert = "";
+        // eslint-disable-next-line array-callback-return
         certificates.map(certificate => {
             if (certificate.value) {
                 concatenatedCert += certificate.name + ",";
@@ -92,9 +93,10 @@ const NewBrand = () => {
     };
 
     const onSubmit = (data: any) => {
+        const token = localStorage.getItem("token");
         const requestOptions = {
             method: "POST",
-            headers: {"Content-Type": "application/json"},
+            headers: {"Content-Type": "application/json", "Authorization": "Bearer " + token ?? ""},
             body: JSON.stringify({
                 ...data,
                 certificate: getCertificate(data),

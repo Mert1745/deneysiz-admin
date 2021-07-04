@@ -12,6 +12,9 @@ const Wrapper = styled.div`
 `;
 
 const ButtonWrapper = styled.div`
+  & span {
+    font-weight: bold;
+  }
 `;
 
 const StyledButton = styled.button`
@@ -24,6 +27,12 @@ const StyledButton = styled.button`
   margin-right: 2%;
   cursor: pointer;
   border-radius: 0.5rem;
+`;
+
+const StyledInput = styled.input`
+  padding: 0.75rem 0.5rem;
+  font-size: 14px;
+  margin-right: 0.5rem;
 `;
 
 const StyledTable = styled.table`
@@ -54,33 +63,70 @@ const TBody = styled.td`
 
 const Dashboard = () => {
     const [brands, setBrands] = useState<Brand[]>();
+    const [hasDeleted, setHasDeleted] = useState<boolean>(false);
+    const [isSuccess, setIsSuccess] = useState<boolean>(false);
+    const [isDelete, setDelete] = useState<boolean>(false);
+    const [idValue, setIdValue] = useState<string>();
 
     useEffect(() => {
-        const token = localStorage.getItem("token");
         //TODO mkose get url from environment
+        getBrands();
+    }, []);
+
+    const getBrands = () => {
+        const token = localStorage.getItem("token");
         const requestOptions = {
             method: "GET",
-            headers: {"Content-Type": "application/json", "Authorization": "Bearer " + token ?? ""},
+            headers: {"Content-Type": "application/json", "Authorization": "Bearer " + token ?? ""}
         };
         fetch("http://localhost:8080/admin/getAllBrands", requestOptions)
             .then(response => response.json())
             .then((data: Brand[]) => setBrands(data));
-    }, []);
+    };
 
     const onAddNewRowClick = () => {
         window.location.href = "/brand/new";
+    };
+
+    const deleteDataById = () => {
+        //TODO mkose take request options and token from shared util function
+        const token = localStorage.getItem("token");
+        const requestOptions = {
+            method: "POST",
+            headers: {"Content-Type": "application/json", "Authorization": "Bearer " + token ?? ""},
+            body: JSON.stringify({id: Number(idValue)})
+        };
+        fetch("http://localhost:8080/admin/deleteBrandById", requestOptions)
+            .then(response => response.json())
+            .then((data: boolean) => {
+                data && getBrands();
+                setIsSuccess(data);
+                setHasDeleted(!data)
+            });
     };
 
     return (
         <Wrapper>
             <ButtonWrapper>
                 <StyledButton type="button" onClick={() => onAddNewRowClick()}>Yeni Kayıt Ekle</StyledButton>
-                <StyledButton type="button">Var Olan Kaydı Sil</StyledButton>
+                <StyledButton type="button" onClick={() => setDelete(!isDelete)}>Var Olan Kaydı Sil</StyledButton>
+                {isDelete && <>
+                    <span>ID: </span>
+                    <StyledInput type="number" value={idValue}
+                                 onChange={(event: any) => {
+                                     setIdValue(event?.target?.value);
+                                     setHasDeleted(false);
+                                     setIsSuccess(false);
+                                 }}/>
+                    <StyledButton type="button" onClick={() => deleteDataById()}>Sil</StyledButton>
+                    {hasDeleted && <span>Silme başarılı olamadı</span>}
+                    {isSuccess && <span>Başarılı!</span>}
+                </>}
             </ButtonWrapper>
             <StyledTable>
                 <THead>
                     <TableRow>
-                        <THCell>id</THCell>
+                        <THCell>ID</THCell>
                         <THCell>Marka Adı</THCell>
                         <THCell>Çatı Firma</THCell>
                         <THCell>Çin'de Satış Var Mı</THCell>
