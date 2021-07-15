@@ -131,13 +131,13 @@ const NewBrand = () => {
                 <Text>Kategori: </Text>
                 <StyledDropdown {...register("category", {required: true})}>
                     <option value="Makyaj">Makyaj</option>
-                    <option value="Parfüm">Parfüm</option>
-                    <option value="Cilt Bakım">Cilt Bakım</option>
-                    <option value="Tırnak Bakım">Tırnak Bakım</option>
                     <option value="Saç Bakım">Saç Bakım</option>
-                    <option value="Saç Boyaları">Saç Boyaları</option>
-                    <option value="Güneş Kremleri">Güneş Kremleri</option>
-                    <option value="Vücut Bakımı">Vücut Bakımı</option>
+                    <option value="Cilt ve Yüz Bakım">Cilt ve Yüz Bakım</option>
+                    <option value="Deodorant ve Parfüm">Deodorant ve Parfüm</option>
+                    <option value="Kişisel Hijyen ve Bakım">Kişisel Hijyen ve Bakım</option>
+                    <option value="Ağız Ve Diş Bakım">Ağız Ve Diş Bakım</option>
+                    <option value="Anne ve Bebek Bakım">Anne ve Bebek Bakım</option>
+                    <option value="Ev Bakım">Ev Bakım</option>
                 </StyledDropdown>
             </Row>
             <Row>
@@ -147,7 +147,7 @@ const NewBrand = () => {
             <Row>
                 <Text>Mağaza Adı: </Text>
                 {/*TODO mkose put regex*/}
-                <StyledInput {...register("shopName", {required: true})}/>
+                <StyledInput placeholder="Örnek: Watsons,Gratis" {...register("shopName", {required: true})}/>
             </Row>
             <Row>
                 <Text>Sertifika: </Text>
