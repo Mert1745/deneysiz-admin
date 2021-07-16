@@ -1,7 +1,13 @@
 export type AdminResponse = {
     status: number;
-    success: boolean;
-    token: string;
+    message: string;
+    data: AdminDTO;
+}
+
+export type BrandResponse = {
+    status: number;
+    success: string;
+    data: Brand[];
 }
 
 interface Certificate {
@@ -23,8 +29,7 @@ export interface Brand {
     hasVeganProduct: boolean;
 }
 
-export type BrandResponse = {
-    status: number;
-    brands: Brand[];
-    message: string;
+export type AdminDTO = {
+    token: string;
+    success: boolean;
 }

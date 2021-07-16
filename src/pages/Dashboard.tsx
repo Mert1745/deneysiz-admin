@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import {useEffect, useState} from "react";
-import {Brand} from "../type/types";
+import {AdminResponse, Brand, BrandResponse} from "../type/types";
 
 const Wrapper = styled.div`
   padding-right: 25%;
@@ -81,7 +81,7 @@ const Dashboard = () => {
         };
         fetch("http://localhost:8080/admin/getAllBrands", requestOptions)
             .then(response => response.json())
-            .then((data: Brand[]) => setBrands(data));
+            .then((response: BrandResponse) => setBrands(response.data));
     };
 
     const onAddNewRowClick = () => {
@@ -98,10 +98,10 @@ const Dashboard = () => {
         };
         fetch("http://localhost:8080/admin/deleteBrandById", requestOptions)
             .then(response => response.json())
-            .then((data: boolean) => {
-                data && getBrands();
-                setIsSuccess(data);
-                setHasDeleted(!data)
+            .then((response: AdminResponse) => {
+                response.data.success && getBrands();
+                setIsSuccess(response.data.success);
+                setHasDeleted(!response.data.success)
             });
     };
 

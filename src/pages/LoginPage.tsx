@@ -73,10 +73,10 @@ const LoginPage = () => {
         //TODO mkose get url from environment
         fetch("http://localhost:8080/admin/login", requestOptions)
             .then(response => response.json())
-            .then((data: AdminResponse) => {
-                setLoginSuccess(data.success);
-                if (data.success) {
-                    localStorage.setItem("token", data.token);
+            .then((response: AdminResponse) => {
+                setLoginSuccess(response.data.success);
+                if (response.data.success) {
+                    localStorage.setItem("token", response.data.token);
                     window.location.href = "/dashboard";
                 }
             });
@@ -87,11 +87,12 @@ const LoginPage = () => {
             <Main onSubmit={handleSubmit(onSubmit)}>
                 <Row>
                     <Text>Kullanıcı Adı: </Text>
-                    <StyledInput {...register("username", {required: true})}/>
+                    <StyledInput {...register("username", {required: true})} onChange={() => {setLoginSuccess(undefined);}}/>
                 </Row>
                 <Row>
                     <Text>Şifre: </Text>
-                    <StyledInput {...register("password", {required: true})}/>
+                    <StyledInput type="password" {...register("password", {required: true})}
+                                 onChange={() => {setLoginSuccess(undefined);}}/>
                 </Row>
                 <Row>
                     <StyledButton type="submit">Giriş Yap</StyledButton>

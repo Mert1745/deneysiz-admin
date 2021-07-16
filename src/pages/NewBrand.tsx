@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import {useForm} from "react-hook-form";
 import {useState} from "react";
+import {AdminResponse} from "../type/types";
 
 const Wrapper = styled.form`
   padding-right: 25%;
@@ -108,8 +109,8 @@ const NewBrand = () => {
         };
         fetch("http://localhost:8080/admin/addBrand", requestOptions)
             .then(response => response.json())
-            .then((data: boolean) => {
-                data ? window.location.href = "/dashboard" : setInsertSuccess(true);
+            .then((response: AdminResponse) => {
+                response.data.success ? window.location.href = "/dashboard" : setInsertSuccess(true);
             });
     };
 
@@ -145,7 +146,7 @@ const NewBrand = () => {
                 <StyledCheckbox type="checkbox" {...register("parentCompanySafe")}/>
             </Row>
             <Row>
-                <Text>Mağaza Adı: </Text>
+                <Text>Mağaza Adları: </Text>
                 {/*TODO mkose put regex*/}
                 <StyledInput placeholder="Örnek: Watsons,Gratis" {...register("shopName", {required: true})}/>
             </Row>
@@ -175,7 +176,7 @@ const NewBrand = () => {
             </Row>
             <Row>
                 {(errors.name || errors.parentCompany || errors.shopName) &&
-                <ErrorMessage>Tüm alanların doldurulması zorunludur</ErrorMessage>}
+                <ErrorMessage>Tüm alanların (Marka Adı, Çatı Firma, Mağaza Adı) doldurulması zorunludur</ErrorMessage>}
                 {insertSuccess && <ErrorMessage>Kaydetme başarılı olamadı</ErrorMessage>}
             </Row>
         </Wrapper>
