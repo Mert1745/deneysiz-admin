@@ -136,6 +136,7 @@ const Dashboard = () => {
                         <THCell>Deneysiz Mi</THCell>
                         <THCell>Vegan Mı</THCell>
                         <THCell>Vegan Ürün Var Mı</THCell>
+                        <THCell>Açıklama</THCell>
                     </TableRow>
                 </THead>
                 <tbody>
@@ -144,14 +145,15 @@ const Dashboard = () => {
                         <TableRow key={brand.id}>
                             <TBody>{brand.id}</TBody>
                             <TBody>{brand.name}</TBody>
-                            <TBody>{brand.parentCompany}</TBody>
+                            <TBody>{brand.parentCompany === "" ? "-" : brand.parentCompany}</TBody>
                             <TBody>{brand.offerInChina ? "Evet" : "Hayır"}</TBody>
                             <TBody>{brand.category}</TBody>
                             <TBody>{brand.parentCompanySafe ? "Evet" : "Hayır"}</TBody>
-                            <TBody>{brand.certificate}</TBody>
+                            <TBody>{brand.certificate?.toString() === "" ? "-" : brand.certificate}</TBody>
                             <TBody>{brand.safe ? "Evet" : "Hayır"}</TBody>
                             <TBody>{brand.vegan ? "Evet" : "Hayır"}</TBody>
                             <TBody>{brand.hasVeganProduct ? "Evet" : "Hayır"}</TBody>
+                            <TBody>{brand.text === "" ? "-" : brand.text}</TBody>
                         </TableRow>)
                 }
                 </tbody>
