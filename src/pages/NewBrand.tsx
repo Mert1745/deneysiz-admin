@@ -146,11 +146,6 @@ const NewBrand = () => {
                 <StyledCheckbox type="checkbox" {...register("parentCompanySafe")}/>
             </Row>
             <Row>
-                <Text>Mağaza Adları: </Text>
-                {/*TODO mkose put regex*/}
-                <StyledInput placeholder="Örnek: Watsons,Gratis" {...register("shopName", {required: true})}/>
-            </Row>
-            <Row>
                 <Text>Sertifika: </Text>
                 <CheckBoxes>
                     LB<input type="checkbox" {...register("lb")}/>
@@ -175,8 +170,8 @@ const NewBrand = () => {
                 <StyledButton type="submit">Ekle</StyledButton>
             </Row>
             <Row>
-                {(errors.name || errors.parentCompany || errors.shopName) &&
-                <ErrorMessage>Tüm alanların (Marka Adı, Çatı Firma, Mağaza Adı) doldurulması zorunludur</ErrorMessage>}
+                {(errors.name) &&
+                <ErrorMessage>Mağaza Adı alanı zorunludur</ErrorMessage>}
                 {insertSuccess && <ErrorMessage>Kaydetme başarılı olamadı</ErrorMessage>}
             </Row>
         </Wrapper>

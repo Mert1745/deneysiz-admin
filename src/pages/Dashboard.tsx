@@ -132,7 +132,6 @@ const Dashboard = () => {
                         <THCell>Çin'de Satış Var Mı</THCell>
                         <THCell>Kategori</THCell>
                         <THCell>Çatı Firma Deneysiz Mi</THCell>
-                        <THCell>Mağaza Adı</THCell>
                         <THCell>Sertifika</THCell>
                         <THCell>Deneysiz Mi</THCell>
                         <THCell>Vegan Mı</THCell>
@@ -149,7 +148,6 @@ const Dashboard = () => {
                             <TBody>{brand.offerInChina ? "Evet" : "Hayır"}</TBody>
                             <TBody>{brand.category}</TBody>
                             <TBody>{brand.parentCompanySafe ? "Evet" : "Hayır"}</TBody>
-                            <TBody>{brand.shopName}</TBody>
                             <TBody>{brand.certificate}</TBody>
                             <TBody>{brand.safe ? "Evet" : "Hayır"}</TBody>
                             <TBody>{brand.vegan ? "Evet" : "Hayır"}</TBody>

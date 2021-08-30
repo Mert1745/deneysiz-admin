@@ -22,7 +22,6 @@ export interface Brand {
     offerInChina: boolean;
     category: number;
     parentCompanySafe: boolean;
-    shopName: string[];
     certificate: Certificate[];
     safe: boolean;
     vegan: boolean;
