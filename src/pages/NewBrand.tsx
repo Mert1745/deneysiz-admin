@@ -30,6 +30,11 @@ const StyledInput = styled.input`
   padding: 0.5rem;
 `;
 
+const StyledTextArea = styled.textarea`
+  padding: 0.5rem;
+  resize: none;
+`;
+
 const StyledDropdown = styled.select`
   padding: 0.5rem;
   cursor: pointer;
@@ -122,7 +127,7 @@ const NewBrand = () => {
             </Row>
             <Row>
                 <Text>Çatı Firma: </Text>
-                <StyledInput {...register("parentCompany", {required: true})}/>
+                <StyledInput {...register("parentCompany")}/>
             </Row>
             <Row>
                 <Text>Çin'de Satış Var Mı: </Text>
@@ -165,6 +170,10 @@ const NewBrand = () => {
             <Row>
                 <Text>Vegan Ürün Var Mı: </Text>
                 <StyledCheckbox type="checkbox" {...register("hasVeganProduct")}/>
+            </Row>
+            <Row>
+                <Text>Açıklama: </Text>
+                <StyledTextArea maxLength="250" {...register("text")}/>
             </Row>
             <Row>
                 <StyledButton type="submit">Ekle</StyledButton>
