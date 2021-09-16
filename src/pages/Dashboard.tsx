@@ -153,7 +153,7 @@ const Dashboard = () => {
                             <TBody>{brand.safe ? "Evet" : "Hayır"}</TBody>
                             <TBody>{brand.vegan ? "Evet" : "Hayır"}</TBody>
                             <TBody>{brand.hasVeganProduct ? "Evet" : "Hayır"}</TBody>
-                            <TBody>{brand.text === "" ? "-" : brand.text}</TBody>
+                            <TBody>{brand.text === "" ? "-" : brand.text.substr(0, 50) + (brand.text.length > 50 ? "..." : "")}</TBody>
                         </TableRow>)
                 }
                 </tbody>
