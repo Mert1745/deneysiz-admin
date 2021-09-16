@@ -80,7 +80,13 @@ const Dashboard = () => {
             headers: {"Content-Type": "application/json", "Authorization": "Bearer " + token ?? ""}
         };
         fetch("http://localhost:8080/admin/getAllBrands", requestOptions)
-            .then(response => response.json())
+            .then(response => {
+                if (response.status === 403) {
+                    localStorage.removeItem("token");
+                    window.location.href = "/";
+                }
+                return response.json();
+            })
             .then((response: BrandResponse) => setBrands(response.data));
     };
 
