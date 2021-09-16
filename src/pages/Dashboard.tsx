@@ -82,6 +82,7 @@ const Dashboard = () => {
         fetch("http://localhost:8080/admin/getAllBrands", requestOptions)
             .then(response => {
                 if (response.status === 403) {
+                    localStorage.setItem("logoutMessage", "Oturum süresi doldu veya kullanıcı onayında hata oluştu.")
                     localStorage.removeItem("token");
                     window.location.href = "/";
                 }

@@ -76,6 +76,7 @@ const LoginPage = () => {
             .then((response: AdminResponse) => {
                 setLoginSuccess(response.data.success);
                 if (response.data.success) {
+                    localStorage.removeItem("logoutMessage");
                     localStorage.setItem("token", response.data.token);
                     window.location.href = "/dashboard";
                 }
@@ -102,6 +103,9 @@ const LoginPage = () => {
                     <ErrorMessage>Tüm alanların doldurulması zorunludur</ErrorMessage>}
                     {loginSuccess !== undefined && !loginSuccess &&
                     <ErrorMessage>Kullanıcı adı veya şifre hatalıdır.</ErrorMessage>}
+                </Row>
+                <Row>
+                    <ErrorMessage>{localStorage.getItem("logoutMessage") ?? undefined}</ErrorMessage>
                 </Row>
             </Main>
         </Wrapper>
