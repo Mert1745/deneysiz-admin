@@ -5,7 +5,7 @@ import {checkTokenValidation} from "../util/utils";
 
 const Wrapper = styled.div`
   padding-right: 25%;
-  padding-left: 15%;
+  padding-left: 10%;
   padding-bottom: 5%;
   font-family: 'Montserrat', sans-serif;
   margin-left: auto;
@@ -144,6 +144,7 @@ const Dashboard = () => {
                         <THCell>Vegan Mı</THCell>
                         <THCell>Vegan Ürün Var Mı</THCell>
                         <THCell>Açıklama</THCell>
+                        <THCell>Oluşturulma Tarihi</THCell>
                     </TableRow>
                 </THead>
                 <tbody>
@@ -161,6 +162,7 @@ const Dashboard = () => {
                             <TBody>{brand.vegan ? "Evet" : "Hayır"}</TBody>
                             <TBody>{brand.hasVeganProduct ? "Evet" : "Hayır"}</TBody>
                             <TBody>{brand.text === "" ? "-" : brand.text.substr(0, 50) + (brand.text.length > 50 ? "..." : "")}</TBody>
+                            <TBody>{brand.createdAt?.substr(0, brand.createdAt.indexOf("T"))}</TBody>
                         </TableRow>)
                 }
                 </tbody>

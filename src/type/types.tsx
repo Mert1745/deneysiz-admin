@@ -27,6 +27,7 @@ export interface Brand {
     vegan: boolean;
     hasVeganProduct: boolean;
     text: string;
+    createdAt: string;
 }
 
 export type AdminDTO = {
