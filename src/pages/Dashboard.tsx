@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import {useEffect, useState} from "react";
 import {AdminResponse, Brand, BrandResponse} from "../type/types";
+import {checkTokenValidation} from "../util/utils";
 
 const Wrapper = styled.div`
   padding-right: 25%;
@@ -81,11 +82,7 @@ const Dashboard = () => {
         };
         fetch("http://localhost:8080/admin/getAllBrands", requestOptions)
             .then(response => {
-                if (response.status === 403) {
-                    localStorage.setItem("logoutMessage", "Oturum süresi doldu veya kullanıcı onayında hata oluştu.")
-                    localStorage.removeItem("token");
-                    window.location.href = "/";
-                }
+                checkTokenValidation(response);
                 return response.json();
             })
             .then((response: BrandResponse) => setBrands(response.data));
@@ -104,7 +101,10 @@ const Dashboard = () => {
             body: JSON.stringify({id: Number(idValue)})
         };
         fetch("http://localhost:8080/admin/deleteBrandById", requestOptions)
-            .then(response => response.json())
+            .then(response => {
+                checkTokenValidation(response);
+                return response.json();
+            })
             .then((response: AdminResponse) => {
                 response.data.success && getBrands();
                 setIsSuccess(response.data.success);

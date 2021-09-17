@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import {useForm} from "react-hook-form";
 import {useState} from "react";
 import {AdminResponse} from "../type/types";
+import {checkTokenValidation} from "../util/utils";
 
 const Wrapper = styled.form`
   padding-right: 25%;
@@ -113,7 +114,10 @@ const NewBrand = () => {
             })
         };
         fetch("http://localhost:8080/admin/addBrand", requestOptions)
-            .then(response => response.json())
+            .then(response => {
+                checkTokenValidation(response);
+                return response.json();
+            })
             .then((response: AdminResponse) => {
                 response.data.success ? window.location.href = "/dashboard" : setInsertSuccess(true);
             });
