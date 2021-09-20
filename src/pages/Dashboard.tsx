@@ -161,7 +161,7 @@ const Dashboard = () => {
                             <TBody>{brand.safe ? "Evet" : "Hayır"}</TBody>
                             <TBody>{brand.vegan ? "Evet" : "Hayır"}</TBody>
                             <TBody>{brand.hasVeganProduct ? "Evet" : "Hayır"}</TBody>
-                            <TBody>{brand.text === "" ? "-" : brand.text.substr(0, 50) + (brand.text.length > 50 ? "..." : "")}</TBody>
+                            <TBody>{brand.text === "" ? "-" : brand.text?.substr(0, 50) + (brand.text?.length > 50 ? "..." : "")}</TBody>
                             <TBody>{brand.createdAt?.substr(0, brand.createdAt.indexOf("T"))}</TBody>
                         </TableRow>)
                 }
