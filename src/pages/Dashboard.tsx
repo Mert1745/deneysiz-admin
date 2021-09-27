@@ -70,7 +70,6 @@ const Dashboard = () => {
     const [idValue, setIdValue] = useState<string>();
 
     useEffect(() => {
-        //TODO mkose get url from environment
         getBrands();
     }, []);
 
@@ -80,7 +79,7 @@ const Dashboard = () => {
             method: "GET",
             headers: {"Content-Type": "application/json", "Authorization": "Bearer " + token ?? ""}
         };
-        fetch("http://localhost:8080/admin/getAllBrands", requestOptions)
+        fetch(process.env.REACT_APP_URL + "/getAllBrands", requestOptions)
             .then(response => {
                 checkTokenValidation(response);
                 return response.json();
@@ -100,7 +99,7 @@ const Dashboard = () => {
             headers: {"Content-Type": "application/json", "Authorization": "Bearer " + token ?? ""},
             body: JSON.stringify({id: Number(idValue)})
         };
-        fetch("http://localhost:8080/admin/deleteBrandById", requestOptions)
+        fetch(process.env.REACT_APP_URL + "/deleteBrandById", requestOptions)
             .then(response => {
                 checkTokenValidation(response);
                 return response.json();

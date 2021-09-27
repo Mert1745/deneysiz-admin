@@ -70,8 +70,7 @@ const LoginPage = () => {
             headers: {"Content-Type": "application/json"},
             body: JSON.stringify({userName: data.username, password: data.password})
         };
-        //TODO mkose get url from environment
-        fetch("http://localhost:8080/admin/login", requestOptions)
+        fetch(process.env.REACT_APP_URL + "/login", requestOptions)
             .then(response => response.json())
             .then((response: AdminResponse) => {
                 setLoginSuccess(response.data.success);
@@ -88,12 +87,16 @@ const LoginPage = () => {
             <Main onSubmit={handleSubmit(onSubmit)}>
                 <Row>
                     <Text>Kullanıcı Adı: </Text>
-                    <StyledInput {...register("username", {required: true})} onChange={() => {setLoginSuccess(undefined);}}/>
+                    <StyledInput {...register("username", {required: true})} onChange={() => {
+                        setLoginSuccess(undefined);
+                    }}/>
                 </Row>
                 <Row>
                     <Text>Şifre: </Text>
                     <StyledInput type="password" {...register("password", {required: true})}
-                                 onChange={() => {setLoginSuccess(undefined);}}/>
+                                 onChange={() => {
+                                     setLoginSuccess(undefined);
+                                 }}/>
                 </Row>
                 <Row>
                     <StyledButton type="submit">Giriş Yap</StyledButton>

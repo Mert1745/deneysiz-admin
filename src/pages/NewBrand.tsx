@@ -113,7 +113,7 @@ const NewBrand = () => {
                 xxxx: undefined
             })
         };
-        fetch("http://localhost:8080/admin/addBrand", requestOptions)
+        fetch(process.env.REACT_APP_URL + "/addBrand", requestOptions)
             .then(response => {
                 checkTokenValidation(response);
                 return response.json();
@@ -184,7 +184,7 @@ const NewBrand = () => {
             </Row>
             <Row>
                 {(errors.name) &&
-                <ErrorMessage>Mağaza Adı alanı zorunludur</ErrorMessage>}
+                <ErrorMessage>Marka Adı alanı zorunludur</ErrorMessage>}
                 {insertSuccess && <ErrorMessage>Kaydetme başarılı olamadı</ErrorMessage>}
             </Row>
         </Wrapper>
