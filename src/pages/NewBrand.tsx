@@ -113,7 +113,7 @@ const NewBrand = () => {
                 xxxx: undefined
             })
         };
-        fetch(process.env.REACT_APP_URL + "/addBrand", requestOptions)
+        fetch(process.env.REACT_APP_URL + "/saveBrand", requestOptions)
             .then(response => {
                 checkTokenValidation(response);
                 return response.json();

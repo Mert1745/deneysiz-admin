@@ -10,11 +10,6 @@ export type BrandResponse = {
     data: Brand[];
 }
 
-interface Certificate {
-    certificate: string;
-    valid: boolean;
-}
-
 export interface Brand {
     id: number;
     name: string;
@@ -22,12 +17,12 @@ export interface Brand {
     offerInChina: boolean;
     category: number;
     parentCompanySafe: boolean;
-    certificate: Certificate[];
+    certificate: string;
     safe: boolean;
     vegan: boolean;
     hasVeganProduct: boolean;
     text: string;
-    createdAt: string;
+    lastModified: string;
 }
 
 export type AdminDTO = {

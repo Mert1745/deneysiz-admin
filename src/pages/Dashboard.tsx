@@ -2,10 +2,10 @@ import styled from 'styled-components';
 import {useEffect, useState} from "react";
 import {AdminResponse, Brand, BrandResponse} from "../type/types";
 import {checkTokenValidation} from "../util/utils";
+import {useHistory} from "react-router-dom";
 
 const Wrapper = styled.div`
-  padding-right: 25%;
-  padding-left: 10%;
+  padding-left: 2%;
   padding-bottom: 5%;
   font-family: 'Montserrat', sans-serif;
   margin-left: auto;
@@ -22,12 +22,31 @@ const StyledButton = styled.button`
   font-family: 'Montserrat', sans-serif;
   font-weight: bold;
   background: antiquewhite;
-  padding: 2% 5%;
+  padding: 1% 2%;
   margin-top: 2%;
   margin-bottom: 2%;
   margin-right: 2%;
   cursor: pointer;
   border-radius: 0.5rem;
+
+  &:hover {
+    background: #e9d0ac;
+  }
+`;
+
+const EditButton = styled.button`
+  display: block;
+  background: darkorange;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: bold;
+  cursor: pointer;
+  border-radius: 0.3rem;
+  padding: 0.5rem;
+  width: 5rem;
+
+  &:hover {
+    background: rgba(255, 140, 0, 0.27);
+  }
 `;
 
 const StyledInput = styled.input`
@@ -37,6 +56,7 @@ const StyledInput = styled.input`
 `;
 
 const StyledTable = styled.table`
+  padding-right: 2%;
   border: 1px;
   margin-left: 0;
 `;
@@ -47,7 +67,7 @@ const TableRow = styled.tr`
 const THCell = styled.th`
   border: 1px solid black;
   background: aliceblue;
-  padding: 0.5rem 2rem;
+  padding: 0.5rem 1.5rem;
   border-radius: 0.5rem;
 `;
 
@@ -68,6 +88,7 @@ const Dashboard = () => {
     const [isSuccess, setIsSuccess] = useState<boolean>(false);
     const [isDelete, setDelete] = useState<boolean>(false);
     const [idValue, setIdValue] = useState<string>();
+    const history = useHistory();
 
     useEffect(() => {
         getBrands();
@@ -88,8 +109,12 @@ const Dashboard = () => {
     };
 
     const onAddNewRowClick = () => {
-        window.location.href = "/brand/new";
+        history.push("/brand/new");
     };
+
+    const onEditClick = (id: number) => {
+        history.push("/brand/edit", {id: id});
+    }
 
     const deleteDataById = () => {
         //TODO mkose take request options and token from shared util function
@@ -161,7 +186,8 @@ const Dashboard = () => {
                             <TBody>{brand.vegan ? "Evet" : "Hayır"}</TBody>
                             <TBody>{brand.hasVeganProduct ? "Evet" : "Hayır"}</TBody>
                             <TBody>{brand.text === "" ? "-" : brand.text?.substr(0, 50) + (brand.text?.length > 50 ? "..." : "")}</TBody>
-                            <TBody>{brand.createdAt?.substr(0, brand.createdAt.indexOf("T"))}</TBody>
+                            <TBody>{brand.lastModified?.substr(0, brand.lastModified.indexOf("T"))}</TBody>
+                            <td><EditButton type="button" onClick={() => onEditClick(brand.id)}>Edit</EditButton></td>
                         </TableRow>)
                 }
                 </tbody>
