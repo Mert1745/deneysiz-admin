@@ -79,7 +79,7 @@ const TableRow = styled.tr`
 const THCell = styled.th`
   border: 1px solid black;
   background: aliceblue;
-  padding: 0.5rem 1.5rem;
+  padding: 1.2rem 1rem;
   border-radius: 0.5rem;
 `;
 

@@ -3,6 +3,7 @@ import mainBackground from "../images/user-template.png";
 import {useState} from "react";
 import {useForm} from "react-hook-form";
 import {AdminResponse} from "../type/types";
+import {useHistory} from "react-router-dom";
 
 const Wrapper = styled.div`
   font-family: 'Montserrat', sans-serif;
@@ -61,6 +62,7 @@ const StyledButton = styled.button`
 
 const LoginPage = () => {
     const {register, handleSubmit, formState: {errors}} = useForm();
+    const history = useHistory();
     const [loginSuccess, setLoginSuccess] = useState<any>(undefined);
 
     const onSubmit = (data: any) => {
@@ -77,7 +79,7 @@ const LoginPage = () => {
                 if (response.data.success) {
                     localStorage.removeItem("logoutMessage");
                     localStorage.setItem("token", response.data.token);
-                    window.location.href = "/dashboard";
+                    history.push("/dashboard");
                 }
             });
     };
@@ -94,9 +96,7 @@ const LoginPage = () => {
                 <Row>
                     <Text>Şifre: </Text>
                     <StyledInput type="password" {...register("password", {required: true})}
-                                 onChange={() => {
-                                     setLoginSuccess(undefined);
-                                 }}/>
+                                 onChange={() => {setLoginSuccess(undefined);}}/>
                 </Row>
                 <Row>
                     <StyledButton type="submit">Giriş Yap</StyledButton>
