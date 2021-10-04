@@ -18,6 +18,18 @@ const ButtonWrapper = styled.div`
   }
 `;
 
+const StyledSpan = styled.span`
+  float: right;
+  margin-top: 2%;
+  margin-right: 2%;
+  background: white;
+  padding: 0.5rem;
+  cursor: pointer;
+  &:hover {
+    background: whitesmoke;
+  }
+`;
+
 const StyledButton = styled.button`
   font-family: 'Montserrat', sans-serif;
   font-weight: bold;
@@ -136,6 +148,11 @@ const Dashboard = () => {
             });
     };
 
+    const onExitClick = () => {
+        localStorage.removeItem("token");
+        history.push("/");
+    }
+
     return (
         <Wrapper>
             <ButtonWrapper>
@@ -153,6 +170,7 @@ const Dashboard = () => {
                     {hasDeleted && <span>Silme başarılı olamadı</span>}
                     {isSuccess && <span>Başarılı!</span>}
                 </>}
+                <StyledSpan onClick={() => onExitClick()}>Çıkış Yap</StyledSpan>
             </ButtonWrapper>
             <StyledTable>
                 <THead>
