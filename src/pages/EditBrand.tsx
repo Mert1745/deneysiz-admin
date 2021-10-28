@@ -3,6 +3,7 @@ import {useForm} from "react-hook-form";
 import React, {useEffect, useState} from "react";
 import {AdminResponse, Brand, BrandResponse} from "../type/types";
 import {checkTokenValidation} from "../util/utils";
+import {useHistory} from "react-router-dom";
 
 const Wrapper = styled.form`
   padding-right: 25%;
@@ -79,6 +80,7 @@ const ErrorMessage = styled.span`
 
 export const EditBrand: React.FC = (props) => {
     const [brand, setBrand] = useState<Brand>();
+    const history = useHistory();
     const hasCertName = (certificateName: string) => {
         return brand?.certificate?.includes(certificateName);
     };
@@ -127,7 +129,7 @@ export const EditBrand: React.FC = (props) => {
                 return response.json();
             })
             .then((response: AdminResponse) => {
-                response.data.success ? window.location.href = "/dashboard" : setInsertSuccess(true);
+                response.data.success ? history.push("/dashboard") : setInsertSuccess(true);
             });
     };
 
