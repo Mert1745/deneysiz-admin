@@ -53,6 +53,10 @@ const CheckBoxes = styled.div`
   & input {
     cursor: pointer;
   }
+
+  & input:nth-last-child(n+2) {
+    margin-right: 1rem;
+  }
 `;
 
 const StyledCheckbox = styled.input.attrs({type: "checkbox"})`
@@ -83,10 +87,10 @@ const NewBrand = () => {
 
     const getCertificate = (data: any) => {
         const certificates = [
-            {"name": "LB", "value": data.lb},
-            {"name": "Peta", "value": data.peta},
-            {"name": "Unilever", "value": data.unilever},
-            {"name": "xxxx", "value": data.xxxx}
+            {"name": "Leaping Bunny", "value": data.lb},
+            {"name": "Beauty Without Bunnies", "value": data.bwb},
+            {"name": "Vegan Society", "value": data.vs},
+            {"name": "V-Label", "value": data.vl}
         ];
         let concatenatedCert = "";
         // eslint-disable-next-line array-callback-return
@@ -110,9 +114,9 @@ const NewBrand = () => {
                 ...data,
                 certificate: getCertificate(data),
                 lb: undefined,
-                peta: undefined,
-                unilever: undefined,
-                xxxx: undefined
+                bwb: undefined,
+                vs: undefined,
+                vl: undefined
             })
         };
         fetch(process.env.REACT_APP_URL + "/saveBrand", requestOptions)
@@ -160,9 +164,9 @@ const NewBrand = () => {
                 <Text>Sertifika: </Text>
                 <CheckBoxes>
                     LB<input type="checkbox" {...register("lb")}/>
-                    Peta<input type="checkbox" {...register("peta")}/>
-                    Unilever<input type="checkbox" {...register("unilever")}/>
-                    XXXX<input type="checkbox" {...register("xxxx")}/>
+                    BWB<input type="checkbox" {...register("bwb")}/>
+                    Vegan Society<input type="checkbox" {...register("vs")}/>
+                    V-Label<input type="checkbox" {...register("vl")}/>
                 </CheckBoxes>
             </Row>
             <Row>

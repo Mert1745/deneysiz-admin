@@ -89,10 +89,10 @@ export const EditBrand: React.FC = (props) => {
 
     const getCertificate = (data: any) => {
         const certificates = [
-            {"name": "LB", "value": data.lb},
-            {"name": "Peta", "value": data.peta},
-            {"name": "Unilever", "value": data.unilever},
-            {"name": "xxxx", "value": data.xxxx}
+            {"name": "Leaping Bunny", "value": data.lb},
+            {"name": "Beauty Without Bunnies", "value": data.bwb},
+            {"name": "Vegan Society", "value": data.vs},
+            {"name": "V-Label", "value": data.vl}
         ];
         let concatenatedCert = "";
         // eslint-disable-next-line array-callback-return
@@ -118,9 +118,9 @@ export const EditBrand: React.FC = (props) => {
                 id: brand?.id,
                 certificate: getCertificate(data),
                 lb: undefined,
-                peta: undefined,
-                unilever: undefined,
-                xxxx: undefined
+                bwb: undefined,
+                vs: undefined,
+                vl: undefined
             })
         };
         fetch(process.env.REACT_APP_URL + "/saveBrand", requestOptions)
@@ -197,11 +197,11 @@ export const EditBrand: React.FC = (props) => {
                 <Row>
                     <Text>Sertifika: </Text>
                     <CheckBoxes>
-                        LB<input type="checkbox" defaultChecked={hasCertName("LB")} {...register("lb")}/>
-                        Peta<input type="checkbox" defaultChecked={hasCertName("Peta")} {...register("peta")}/>
-                        Unilever<input type="checkbox"
-                                       defaultChecked={hasCertName("Unilever")}{...register("unilever")}/>
-                        XXXX<input type="checkbox" defaultChecked={hasCertName("xxxx")} {...register("xxxx")}/>
+                        LB<input type="checkbox" defaultChecked={hasCertName("Leaping Bunny")} {...register("lb")}/>
+                        BWB<input type="checkbox" defaultChecked={hasCertName("Beauty Without Bunnies")} {...register("bwb")}/>
+                        Vegan Society<input type="checkbox"
+                                       defaultChecked={hasCertName("Vegan Society")}{...register("vs")}/>
+                        V-Label<input type="checkbox" defaultChecked={hasCertName("V-Label")} {...register("vl")}/>
                     </CheckBoxes>
                 </Row>
                 <Row>
