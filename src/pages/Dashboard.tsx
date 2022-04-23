@@ -197,7 +197,7 @@ const Dashboard = () => {
                             <TBody>{brand.name}</TBody>
                             <TBody>{brand.parentCompany === "" ? "-" : brand.parentCompany}</TBody>
                             <TBody>{brand.offerInChina ? "Evet" : "Hayır"}</TBody>
-                            <TBody>{brand.category}</TBody>
+                            <TBody>{brand.category.toString()}</TBody>
                             <TBody>{brand.parentCompanySafe ? "Evet" : "Hayır"}</TBody>
                             <TBody>{brand.certificate?.toString() === "" ? "-" : brand.certificate}</TBody>
                             <TBody>{brand.safe ? "Evet" : "Hayır"}</TBody>

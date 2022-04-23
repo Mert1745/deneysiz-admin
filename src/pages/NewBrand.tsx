@@ -40,10 +40,10 @@ const StyledTextArea = styled.textarea`
 const StyledDropdown = styled.select`
   padding: 0.5rem;
   cursor: pointer;
-
+  overflow: hidden;
+  
   & option {
-    margin-bottom: 0.5rem;
-    margin-top: 0.25rem;
+    margin-bottom: 0.25rem;
   }
 `;
 
@@ -145,7 +145,7 @@ const NewBrand = () => {
             </Row>
             <Row>
                 <Text>Kategori: </Text>
-                <StyledDropdown {...register("category", {required: true})}>
+                <StyledDropdown multiple size={10} {...register("category", {required: true})}>
                     <option value="Makyaj">Makyaj</option>
                     <option value="Saç Bakım">Saç Bakım</option>
                     <option value="Cilt ve Yüz Bakım">Cilt ve Yüz Bakım</option>
@@ -189,8 +189,8 @@ const NewBrand = () => {
                 <StyledButton type="submit">Ekle</StyledButton>
             </Row>
             <Row>
-                {(errors.name) &&
-                <ErrorMessage>Marka Adı alanı zorunludur</ErrorMessage>}
+                {(errors.name || errors.category) &&
+                <ErrorMessage>Marka Adı ve Kategori alanı zorunludur</ErrorMessage>}
                 {insertSuccess && <ErrorMessage>Kaydetme başarılı olamadı</ErrorMessage>}
             </Row>
         </Wrapper>

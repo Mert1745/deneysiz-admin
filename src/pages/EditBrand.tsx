@@ -42,10 +42,10 @@ const StyledTextArea = styled.textarea`
 const StyledDropdown = styled(React.forwardRef((props, ref) => <select {...props} ref={ref}/>))`
   padding: 0.5rem;
   cursor: pointer;
+  overflow: hidden;
 
   & option {
-    margin-bottom: 0.5rem;
-    margin-top: 0.25rem;
+    margin-bottom: 0.25rem;
   }
 `;
 
@@ -178,7 +178,7 @@ export const EditBrand: React.FC = (props) => {
                 </Row>
                 <Row>
                     <Text>Kategori: </Text>
-                    <StyledDropdown defaultValue={brand?.category} {...register("category", {required: true})}>
+                    <StyledDropdown  multiple size={10} defaultValue={brand?.category} {...register("category", {required: true})}>
                         <option value="Makyaj">Makyaj</option>
                         <option value="Saç Bakım">Saç Bakım</option>
                         <option value="Cilt ve Yüz Bakım">Cilt ve Yüz Bakım</option>
