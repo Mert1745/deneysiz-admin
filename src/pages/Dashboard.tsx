@@ -10,6 +10,11 @@ const Wrapper = styled.div`
   font-family: 'Montserrat', sans-serif;
   margin-left: auto;
   margin-right: auto;
+  font-size: 10px;
+
+  @media only screen and (min-width: 1366px) {
+    font-size: 14px
+  }
 `;
 
 const ButtonWrapper = styled.div`
@@ -40,9 +45,13 @@ const StyledButton = styled.button`
   margin-right: 2%;
   cursor: pointer;
   border-radius: 0.5rem;
-
+  font-size: 10px;
+  
   &:hover {
     background: #e9d0ac;
+  }
+  @media only screen and (min-width: 1366px) {
+    font-size: 14px
   }
 `;
 
@@ -55,6 +64,11 @@ const EditButton = styled.button`
   border-radius: 0.3rem;
   padding: 0.5rem;
   width: 5rem;
+  font-size: 10px;
+  
+  @media only screen and (min-width: 1366px) {
+    font-size: 14px
+  }
 
   &:hover {
     background: rgba(255, 140, 0, 0.27);
@@ -79,8 +93,12 @@ const TableRow = styled.tr`
 const THCell = styled.th`
   border: 1px solid black;
   background: aliceblue;
-  padding: 1.2rem 1rem;
   border-radius: 0.5rem;
+  padding: 0.8rem 0.6rem;
+  
+  @media only screen and (min-width: 1366px) {
+    padding: 1.2rem 1rem;
+  }
 `;
 
 const THead = styled.thead`
@@ -88,7 +106,11 @@ const THead = styled.thead`
 
 const TBody = styled.td`
   border: 1px solid black;
-  padding: 0.5rem 1.2rem;
+  padding: 0.3rem 1rem;
+
+  @media only screen and (min-width: 1366px) {
+    padding: 0.5rem 1.2rem;
+  }
   background: cornsilk;
   border-radius: 0.5rem;
   font-weight: bold;
